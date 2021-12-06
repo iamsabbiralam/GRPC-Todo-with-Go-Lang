@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "./proto/todo";
+
+package todo;
+
+message GetTodoRequest {
+    int64 ID = 1;
+}
+
+message GetTodosRequest {}
+
+message GetTodoResponse {
+    int64 ID = 1;
+    string Title = 2;
+    string Description = 3;
+}
+
+service TodoService {
+    rpc GetTodo(GetTodoRequest) returns (GetTodoResponse){}
+    rpc GetTodos(GetTodosRequest) returns (stream GetTodoResponse){}
+}
